@@ -69,6 +69,7 @@ endif
 endif
 endif
 endif
+
 # odroidn2:
 PRODUCT_PROPERTY_OVERRIDES += \
         ro.hdmi.device_type=4 \
@@ -96,7 +97,7 @@ BOARD_WIDEVINE_TA_PATH := vendor/amlogic/
 #AB_OTA_UPDATER :=true
 BUILD_WITH_AVB := false
 
-ifeq ($(BUILD_WITH_AVB),true)
+ifeq ($(BUILD_WITH_AVB), true)
 #BOARD_AVB_ENABLE := true
 BOARD_BUILD_DISABLED_VBMETAIMAGE := true
 BOARD_AVB_ALGORITHM := SHA256_RSA2048
@@ -104,7 +105,7 @@ BOARD_AVB_KEY_PATH := device/hardkernel/common/security/testkey_rsa2048.pem
 BOARD_AVB_ROLLBACK_INDEX := 0
 endif
 
-ifeq ($(AB_OTA_UPDATER),true)
+ifeq ($(AB_OTA_UPDATER), true)
 AB_OTA_PARTITIONS := \
     boot \
     system \
@@ -113,7 +114,7 @@ AB_OTA_PARTITIONS := \
     product
 
 TARGET_BOOTLOADER_CONTROL_BLOCK := true
-ifneq ($(BUILD_WITH_AVB),true)
+ifneq ($(BUILD_WITH_AVB), true)
 TARGET_PARTITION_DTSI := partition_mbox_ab.dtsi
 else
 TARGET_PARTITION_DTSI := partition_mbox_ab_avb.dtsi
@@ -131,7 +132,7 @@ else
 TARGET_PARTITION_DTSI := partition_mbox_normal_P_32.dtsi
 endif
 
-ifneq ($(BUILD_WITH_AVB),true)
+ifneq ($(BUILD_WITH_AVB), true)
 TARGET_FIRMWARE_DTSI := firmware_normal.dtsi
 else
 ifeq ($(BOARD_BUILD_SYSTEM_ROOT_IMAGE), true)
@@ -158,7 +159,7 @@ endif
 #                           ATV
 #
 ########################################################################
-ifeq ($(BOARD_COMPILE_ATV),true)
+ifeq ($(BOARD_COMPILE_ATV), true)
 BOARD_COMPILE_CTS := true
 TARGET_BUILD_GOOGLE_ATV:= false
 DONT_DEXPREOPT_PREBUILTS:= true
@@ -170,7 +171,7 @@ endif
 #                           CTS
 #
 ########################################################################
-ifeq ($(BOARD_COMPILE_CTS),true)
+ifeq ($(BOARD_COMPILE_CTS), true)
 BOARD_WIDEVINE_OEMCRYPTO_LEVEL := 1
 BOARD_PLAYREADY_LEVEL := 1
 TARGET_BUILD_CTS:= true
@@ -187,6 +188,7 @@ endif
 ifeq ($(TARGET_USE_SECURITY_DM_VERITY_MODE_WITH_TOOL), true)
 BUILD_WITH_DM_VERITY := true
 endif # ifeq ($(TARGET_USE_SECURITY_DM_VERITY_MODE_WITH_TOOL), true)
+
 ifeq ($(BUILD_WITH_DM_VERITY), true)
 PRODUCT_PACKAGES += \
 	libfs_mgr \
@@ -208,7 +210,6 @@ include device/hardkernel/common/wifi.mk
 # Change this to match target country
 # 11 North America; 14 Japan; 13 rest of world
 PRODUCT_DEFAULT_WIFI_CHANNELS := 11
-
 
 #########################################################################
 #
@@ -233,10 +234,9 @@ include device/hardkernel/common/bluetooth.mk
 #PRODUCT_COPY_FILES += \
 #    frameworks/native/data/etc/android.hardware.consumerir.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.consumerir.xml
 
-
 #PRODUCT_PACKAGES += libbt-vendor
 
-ifeq ($(SUPPORT_HDMIIN),true)
+ifeq ($(SUPPORT_HDMIIN), true)
 PRODUCT_PACKAGES += \
     libhdmiin \
     HdmiIn
@@ -259,8 +259,6 @@ include device/hardkernel/common/audio.mk
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.external.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.external.xml \
 
-
-
 #########################################################################
 #
 #                                                PlayReady DRM
@@ -277,7 +275,6 @@ BUILD_WITH_VIEWRIGHT_WEB := false
 #verimatrix stb
 BUILD_WITH_VIEWRIGHT_STB := false
 #########################################################################
-
 
 #DRM Widevine
 ifeq ($(BOARD_WIDEVINE_OEMCRYPTO_LEVEL),)
@@ -309,7 +306,7 @@ $(call inherit-product, build/target/product/languages_full.mk)
 #BUILD_WITH_PPPOE := true
 #endif
 
-ifeq ($(BUILD_WITH_PPPOE),true)
+ifeq ($(BUILD_WITH_PPPOE), true)
 PRODUCT_PACKAGES += \
     PPPoE \
     libpppoejni \
@@ -325,9 +322,9 @@ endif
 
 BOARD_USES_USB_PM := true
 
-
 include device/hardkernel/common/software.mk
-ifeq ($(TARGET_BUILD_GOOGLE_ATV),true)
+
+ifeq ($(TARGET_BUILD_GOOGLE_ATV), true)
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=320
 else
@@ -335,19 +332,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=240
 endif
 
-
 #########################################################################
 #
 #                                     A/B update
 #
 #########################################################################
-ifeq ($(BUILD_WITH_AVB),true)
+ifeq ($(BUILD_WITH_AVB), true)
 PRODUCT_PACKAGES += \
 	bootctrl.avb \
 	libavb_user
 endif
 
-ifeq ($(AB_OTA_UPDATER),true)
+ifeq ($(AB_OTA_UPDATER), true)
 PRODUCT_PACKAGES += \
     bootctrl.$(TARGET_PRODUCT) \
     bootctl
@@ -361,9 +357,6 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-impl \
     android.hardware.boot@1.0-service
 endif
-
-# Superuser
-PRODUCT_PACKAGES += su
 
 # GPS
 PRODUCT_PACKAGES += gps.$(PRODUCT_DEVICE)
@@ -384,8 +377,6 @@ PRODUCT_PACKAGES += \
 # Prebuilt app
 PRODUCT_PACKAGES += \
     CMFileManager \
-    LightningBrowser \
-    AndroidTerm
 
 # Updater
 PRODUCT_PACKAGES += updater
@@ -393,15 +384,15 @@ PRODUCT_PACKAGES += updater
 PRODUCT_PACKAGES += \
      com.android.future.usb.accessory
 
-ifneq ($(TARGET_BUILD_LIVETV),true)
+ifneq ($(TARGET_BUILD_LIVETV), true)
 TARGET_BUILD_LIVETV := false
 endif
 
-ifneq ($(TARGET_BUILD_GOOGLE_ATV),true)
+ifneq ($(TARGET_BUILD_GOOGLE_ATV), true)
 TARGET_BUILD_GOOGLE_ATV := false
 endif
 
-ifeq ($(HAVE_WRITED_SHELL_FILE),yes)
+ifeq ($(HAVE_WRITED_SHELL_FILE), yes)
 $(warning $(shell ($(AUTO_PATCH_SHELL_FILE) $(TARGET_BUILD_LIVETV) $(TARGET_BUILD_GOOGLE_ATV))))
 endif
 
