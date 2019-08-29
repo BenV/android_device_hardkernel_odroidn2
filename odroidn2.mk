@@ -374,10 +374,6 @@ include device/hardkernel/common/gpu/gondul-user-arm64.mk
 PRODUCT_PACKAGES += \
     static_busybox
 
-# Prebuilt app
-PRODUCT_PACKAGES += \
-    CMFileManager \
-
 # Updater
 PRODUCT_PACKAGES += updater
 
