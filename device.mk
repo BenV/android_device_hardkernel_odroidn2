@@ -101,21 +101,6 @@ PRODUCT_AAPT_PREF_CONFIG := hdpi
 PRODUCT_CHARACTERISTICS := tablet
 endif
 
-ifeq ($(TARGET_BUILD_GOOGLE_ATV), true)
-# TV Specific Packages
-PRODUCT_PACKAGES += \
-    TvSettings \
-    google-tv-pairing-protocol \
-    TvProvision \
-    LeanbackSampleApp \
-    TvSampleLeanbackLauncher \
-    TvProvider \
-    SettingsIntelligence \
-    tv_input.default \
-    com.android.media.tv.remoteprovider \
-    InputDevices
-endif
-
 ifneq ($(TARGET_BUILD_GOOGLE_ATV), true)
 DEVICE_PACKAGE_OVERLAYS := \
     device/hardkernel/$(PRODUCT_DIR)/overlay
