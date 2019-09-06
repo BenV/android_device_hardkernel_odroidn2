@@ -111,7 +111,7 @@ BOARD_VENDORIMAGE_PARTITION_SIZE := 536870912
 BOARD_ODMIMAGE_PARTITION_SIZE := 33554432
 BOARD_PRODUCTIMAGE_PARTITION_SIZE := 33554432
 
-ifneq ($(USE_USB_AS_HOST),true)
+ifneq ($(USE_USB_AS_HOST), true)
 BOARD_KERNEL_CMDLINE += "otg_device=1"
 endif
 
@@ -150,7 +150,7 @@ TARGET_RECOVERY_UI_LIB += \
     librecovery_amlogic \
     libenv \
     libsystemcontrol_static
-ifneq ($(AB_OTA_UPDATER),true)
+ifneq ($(AB_OTA_UPDATER), true)
 TARGET_RECOVERY_UPDATER_LIBS := libinstall_amlogic
 TARGET_RECOVERY_UPDATER_EXTRA_LIBS += libenv libsystemcontrol_static libsecurity libfdt
 endif

@@ -41,7 +41,7 @@ PRODUCT_COPY_FILES += \
     device/hardkernel/$(PRODUCT_DIR)/files/PQ/pq.db:$(TARGET_COPY_OUT_VENDOR)/etc/tvconfig/pq/pq.db \
     device/hardkernel/$(PRODUCT_DIR)/files/PQ/pq_default.ini:$(TARGET_COPY_OUT_VENDOR)/etc/tvconfig/pq/pq_default.ini
 
-ifeq ($(BOARD_COMPILE_ATV),true)
+ifeq ($(BOARD_COMPILE_ATV), true)
 PRODUCT_COPY_FILES += \
     device/hardkernel/$(PRODUCT_DIR)/files/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml
 else
