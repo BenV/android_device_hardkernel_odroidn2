@@ -103,6 +103,7 @@ ifeq ($(TARGET_BUILD_GOOGLE_ATV), true)
 PRODUCT_AAPT_CONFIG := normal large xlarge tvdpi hdpi xhdpi xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := tvdpi
 PRODUCT_CHARACTERISTICS := tv
+PRODUCT_PACKAGES += LiveTv # Remove stock Live Channels app in favor of our own
 else
 PRODUCT_AAPT_CONFIG := xlarge hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
